@@ -1,0 +1,4 @@
+build/*
+Externals/glfw/*
+Externals/glm/*
+Externals/vulkan/*
