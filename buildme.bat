@@ -3,3 +3,4 @@ mkdir build
 cd build
 cmake ..
 cmake --build . --config Release
+..\build\Release\testVulkan.exe

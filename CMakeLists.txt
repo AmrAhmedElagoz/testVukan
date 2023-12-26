@@ -10,7 +10,7 @@ endif()
 
 project(testVulkan LANGUAGES CXX C)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 
 if (MSVC)
     message(STATUS "Building with MSVC...")
@@ -19,21 +19,17 @@ if (MSVC)
 endif()
 
 
-set(SOURCES src/main.cpp 
-            )
+FILE(GLOB_RECURSE SOURCES src/*.cpp)
+FILE(GLOB_RECURSE HEADERS include/*.hpp)
 
-add_executable(${PROJECT_NAME} ${SOURCES})
-
-target_link_libraries(${PROJECT_NAME})
+add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 
 target_include_directories(${PROJECT_NAME} PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/include
     ${CMAKE_CURRENT_SOURCE_DIR}/Externals/vulkan/Include
     ${CMAKE_CURRENT_SOURCE_DIR}/Externals/glfw/include
     ${CMAKE_CURRENT_SOURCE_DIR}/Externals/glm
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
-
-set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 20)
 
 file(GLOB VULKANLIB ${CMAKE_CURRENT_SOURCE_DIR}/Externals/vulkan/Lib/*.lib)
 file(GLOB GLFWLIB ${CMAKE_CURRENT_SOURCE_DIR}/Externals/glfw/lib-vc2022/*.lib)
